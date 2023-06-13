@@ -1,55 +1,51 @@
-function nComentario(){
-    
-    let li = document.createElement("li");
-    let valoringresado = document.getElementById("nuevoComentario").value;
-    let text = document.createTextNode(valoringresado);
-    li.appendChild(text);
-
-    if(valoringresado === ''){
-        alert("Ingrese un comentario")
-    }else{
-        document.getElementById("comentarios").appendChild(li);
+const app = Vue.createApp({
+  data() {
+    return {
+      textoSeguir: "Seguir",
+      contador: 200,
+      comentarios: [],
+      comentarioNuevo: '',
+      botonMeGusta: "Me Gusta", 
+      usuario:'',
+      errorMensaje: ''
+    };
+  },
+  methods: {
+    seguir() {
+      if (this.textoSeguir === "Seguir") {
+        this.textoSeguir = "Dejar Seguir";
+      } else {
+        this.textoSeguir = "Seguir";
+      }
+    },
+    sumarLike() {
+      if (this.contador === 201) {
+        this.contador--;
+      } else {
+        this.contador++;
+      }
+      if (this.botonMeGusta === "Me Gusta") {
+        this.botonMeGusta = "No Me Gusta";
+      } else {
+        this.botonMeGusta = "Me Gusta";
+      }
+    },
+    comentar() {
+      if (this.comentarioNuevo.trim() === '') {
+        this.errorMensaje = '¡Por favor, revise que haya ingresado un comentario!';          
+      }else if(this.usuario.trim() === ''){
+        this.errorMensaje = '¡Por favor, revise que haya ingresado su usuario!';          
+      }
+      else{
+        this.comentarios.push({ user: this.usuario, text: this.comentarioNuevo });
+        this.usuario = '';
+        this.comentarioNuevo = '';
+        this.errorMensaje = '';
+      }
+    },
+    borrarComentarios(index) {
+      this.comentarios.splice(index, 1);
     }
-
-    document.getElementById("nuevoComentario").value = "";
-    li.className = "comentario";
-
-    let borrar = document.createElement("p");
-    borrar.innerHTML = ("Borrar");
-    borrar.className = "close";
-    li.appendChild(borrar);
-
-    let close = document.getElementsByClassName("close");
-    let i; 
-    for(i = 0; i < close.length; i++){
-        close[i].onclick = function(){
-            let div = this.parentElement;
-            div.style.display = "none";
-        }
-    }
-}
-
-function botonLikes() {
-    var uno = document.getElementById('botonlike');
-    if (uno.innerHTML == '200')
-        uno.innerHTML = '201';
-    else uno.innerHTML = '200'; 
-}
-
-function iniciarSesion(){
-    var email = document.getElementById("email").value;
-    var contrasena = document.getElementById("contrasena").value;
-
-    if(email.value.length > 6 && contrasena.value.length > 8){
-        window.location = "Globo.html";
-    }else{
-        alert("Datos Incorrectos");
-    }
-}
-
-function FbotonOn() {
-    var uno = document.getElementById('botonOn');
-    if (uno.innerHTML == 'Seguir')
-        uno.innerHTML = 'Dejar Seguir';
-    else uno.innerHTML = 'Seguir'; 
-}
+  }
+});
+app.mount("#app");

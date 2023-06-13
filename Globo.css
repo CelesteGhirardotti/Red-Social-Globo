@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 body{
     background-color: rgba(225, 247, 246, 0.753);
-    font-family: 'Montserrat';
+}
+*{
+    font-family: Montserrat, sans-serif;
 }
 header{
     background-color: blue;
@@ -11,6 +14,7 @@ header input{
     float: right;
     margin: 30px;
     height: 40px;
+    text-align: center;
     border-radius: 10px;
     background-color: rgb(197, 218, 216);
     color: blue;
@@ -47,6 +51,11 @@ header img{
     border: none;
     border-radius: 5px;
     width: 150px;
+}
+.likes{
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
 }
 
 .cajita1 button{
@@ -198,7 +207,7 @@ header img{
     justify-content: baseline;
     gap: 5px;
 }
-#nuevoComentario{
+#comentarioNuevo{
     outline: none;
     border: none;
     width: 100%;
@@ -210,10 +219,10 @@ header img{
     border-bottom: 2px solid rgba(255, 255, 255, 0);
     transition-duration: 200ms;
 }
-#nuevoComentario::placeholder{
+#comentarioNuevo::placeholder{
     color: black;
 }
-#nuevoComentario:focus{
+#comentarioNuevo:focus{
     border-bottom: 2px solid red;
 }
 .btn-agg{
@@ -248,4 +257,17 @@ button{
     background: rgba(149, 145, 145, 0.288);
     cursor: pointer;
     color: red;
+}
+.error-Mensaje{
+    box-sizing: border-box;
+    width: max-content;
+    font-size: 15px;
+    color: red;
+    background-color: #fff;
+    display: block;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 15px;
 }
